@@ -1826,7 +1826,6 @@ class _SfDateRangePickerState extends State<SfDateRangePicker> {
               _moveToNextView,
               widget.enableMultiView,
               widget.viewSpacing,
-              widget.selectionColor ?? _datePickerTheme.selectionColor,
               _isRtl,
               _textScaleFactor),
           height: widget.headerHeight,

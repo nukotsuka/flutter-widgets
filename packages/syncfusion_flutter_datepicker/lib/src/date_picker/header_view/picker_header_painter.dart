@@ -12,8 +12,6 @@ class _PickerHeaderPainter extends CustomPainter {
       this.locale,
       this.enableMultiView,
       this.multiViewSpacing,
-      this.hoverColor,
-      this.hovering,
       this.textScaleFactor)
       : super(repaint: visibleDates);
 
@@ -23,10 +21,8 @@ class _PickerHeaderPainter extends CustomPainter {
   final SfDateRangePickerThemeData datePickerTheme;
   final bool isRtl;
   final String monthFormat;
-  final bool hovering;
   final bool enableMultiView;
   final double multiViewSpacing;
-  final Color hoverColor;
   final Locale locale;
   final double textScaleFactor;
   ValueNotifier<List<DateTime>> visibleDates;
@@ -57,9 +53,6 @@ class _PickerHeaderPainter extends CustomPainter {
       _headerText += j == 1 ? ' ' + text : text;
       TextStyle style =
           headerStyle.textStyle ?? datePickerTheme.headerTextStyle;
-      if (hovering) {
-        style = style.copyWith(color: hoverColor);
-      }
 
       final TextSpan span = TextSpan(text: text, style: style);
       _textPainter.text = span;
@@ -101,10 +94,7 @@ class _PickerHeaderPainter extends CustomPainter {
         oldWidget.numberOfWeeksInView != numberOfWeeksInView ||
         oldWidget.locale != locale ||
         oldWidget.datePickerTheme != datePickerTheme ||
-        oldWidget.textScaleFactor != textScaleFactor ||
-        (kIsWeb &&
-            (oldWidget.hovering != hovering ||
-                oldWidget.hoverColor != hoverColor));
+        oldWidget.textScaleFactor != textScaleFactor;
   }
 
   DateFormat _getMonthHeaderDateFormat({@required String monthFormat}) {

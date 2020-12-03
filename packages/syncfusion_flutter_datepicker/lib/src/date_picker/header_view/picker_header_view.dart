@@ -23,7 +23,6 @@ class _PickerHeaderView extends StatefulWidget {
       this.nextNavigationCallback,
       this.enableMultiView,
       this.multiViewSpacing,
-      this.hoverColor,
       this.isRtl,
       this.textScaleFactor,
       {Key key})
@@ -49,7 +48,6 @@ class _PickerHeaderView extends StatefulWidget {
   final double width;
   final double height;
   final bool isRtl;
-  final Color hoverColor;
   final bool enableMultiView;
   final double multiViewSpacing;
 
@@ -58,11 +56,8 @@ class _PickerHeaderView extends StatefulWidget {
 }
 
 class _PickerHeaderViewState extends State<_PickerHeaderView> {
-  bool _hovering;
-
   @override
   void initState() {
-    _hovering = false;
     _addListener();
     super.initState();
   }
@@ -179,49 +174,24 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
   }
 
   Widget _getHeaderText(double headerWidth) {
-    return MouseRegion(
-        onEnter: (PointerEnterEvent event) {
-          if (widget.view == DateRangePickerView.century) {
-            return;
-          }
-
-          setState(() {
-            _hovering = true;
-          });
-        },
-        onHover: (PointerHoverEvent event) {
-          if (widget.view == DateRangePickerView.century) {
-            return;
-          }
-
-          setState(() {
-            _hovering = true;
-          });
-        },
-        onExit: (PointerExitEvent event) {
-          setState(() {
-            _hovering = false;
-          });
-        },
-        child: RepaintBoundary(
-            child: CustomPaint(
-          // Returns the header view  as a child for the calendar.
-          painter: _PickerHeaderPainter(
-              widget.visibleDates,
-              widget.headerStyle,
-              widget.view,
-              widget.numberOfWeeksInView,
-              widget.monthFormat,
-              widget.datePickerTheme,
-              widget.isRtl,
-              widget.locale,
-              widget.enableMultiView,
-              widget.multiViewSpacing,
-              widget.hoverColor,
-              _hovering,
-              widget.textScaleFactor),
-          size: Size(headerWidth, widget.height),
-        )));
+    return RepaintBoundary(
+      child: CustomPaint(
+        // Returns the header view  as a child for the calendar.
+        painter: _PickerHeaderPainter(
+            widget.visibleDates,
+            widget.headerStyle,
+            widget.view,
+            widget.numberOfWeeksInView,
+            widget.monthFormat,
+            widget.datePickerTheme,
+            widget.isRtl,
+            widget.locale,
+            widget.enableMultiView,
+            widget.multiViewSpacing,
+            widget.textScaleFactor),
+        size: Size(headerWidth, widget.height),
+      ),
+    );
   }
 
   Widget _getLeftArrow(double arrowWidth, Color arrowColor,
