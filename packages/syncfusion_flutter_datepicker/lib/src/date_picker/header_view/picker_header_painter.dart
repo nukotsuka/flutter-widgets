@@ -107,6 +107,18 @@ class _PickerHeaderPainter extends CustomPainter {
                 oldWidget.hoverColor != hoverColor));
   }
 
+  DateFormat _getMonthHeaderDateFormat({@required String monthFormat}) {
+    switch (monthFormat) {
+      case 'M':
+        return DateFormat.yM(locale.toString());
+      case 'MMM':
+        return DateFormat.yMMM(locale.toString());
+      case 'MMMM':
+        return DateFormat.yMMMM(locale.toString());
+    }
+    return DateFormat.yM(locale.toString());
+  }
+
   String _getMonthHeaderText(int startIndex, int endIndex, List<DateTime> dates,
       int middleIndex, int datesCount) {
     if (numberOfWeeksInView != 6 &&
@@ -118,16 +130,10 @@ class _PickerHeaderPainter extends CustomPainter {
         endIndex = endIndex;
       }
 
-      final String startText = DateFormat(monthTextFormat, locale.toString())
-              .format(dates[startIndex])
-              .toString() +
-          ' ' +
-          dates[startIndex].year.toString();
-      final String endText = DateFormat(monthTextFormat, locale.toString())
-              .format(dates[endIndex])
-              .toString() +
-          ' ' +
-          dates[endIndex].year.toString();
+      final dateFormat =
+          _getMonthHeaderDateFormat(monthFormat: monthTextFormat);
+      final String startText = dateFormat.format(dates[startIndex]);
+      final String endText = dateFormat.format(dates[endIndex]);
       if (startText == endText) {
         return startText;
       }
@@ -136,19 +142,13 @@ class _PickerHeaderPainter extends CustomPainter {
     } else {
       final String monthTextFormat =
           monthFormat == null || monthFormat.isEmpty ? 'MMMM' : monthFormat;
-      final String text = DateFormat(monthTextFormat, locale.toString())
-              .format(dates[middleIndex])
-              .toString() +
-          ' ' +
-          dates[middleIndex].year.toString();
+      final dateFormat =
+          _getMonthHeaderDateFormat(monthFormat: monthTextFormat);
+      final String text = dateFormat.format(dates[middleIndex]);
       if (enableMultiView && headerStyle.textAlign != TextAlign.center) {
         return text +
             ' - ' +
-            DateFormat(monthTextFormat, locale.toString())
-                .format(dates[datesCount + middleIndex])
-                .toString() +
-            ' ' +
-            dates[datesCount + middleIndex].year.toString();
+            dateFormat.format(dates[datesCount + middleIndex]);
       }
 
       return text;
