@@ -11,11 +11,7 @@ dependencies:
     sdk: flutter
   timezone: 0.5.7
   syncfusion_flutter_core:
-    path: ../syncfusion_flutter_core
-
   syncfusion_flutter_datepicker:
-    path: ../syncfusion_flutter_datepicker
-
   intl: ">=0.15.0 <0.17.0"
 
 flutter:
