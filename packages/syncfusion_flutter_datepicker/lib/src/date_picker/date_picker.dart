@@ -1802,39 +1802,34 @@ class _SfDateRangePickerState extends State<SfDateRangePicker> {
         right: 0,
         left: 0,
         height: widget.headerHeight,
-        child: GestureDetector(
-          child: Container(
-            color: widget.headerStyle.backgroundColor ??
-                _datePickerTheme.headerBackgroundColor,
-            child: _PickerHeaderView(
-                _headerVisibleDates,
-                widget.headerStyle,
-                widget.selectionMode,
-                _view,
-                widget.monthViewSettings.numberOfWeeksInView,
-                widget.showNavigationArrow,
-                widget.navigationDirection,
-                widget.monthViewSettings.enableSwipeSelection,
-                widget.minDate,
-                widget.maxDate,
-                widget.monthFormat,
-                _datePickerTheme,
-                _locale,
-                width,
-                widget.headerHeight,
-                widget.allowViewNavigation,
-                _moveToPreviousView,
-                _moveToNextView,
-                widget.enableMultiView,
-                widget.viewSpacing,
-                widget.selectionColor ?? _datePickerTheme.selectionColor,
-                _isRtl,
-                _textScaleFactor),
-            height: widget.headerHeight,
-          ),
-          onTapUp: (TapUpDetails details) {
-            _updateCalendarTapCallbackForHeader();
-          },
+        child: Container(
+          color: widget.headerStyle.backgroundColor ??
+              _datePickerTheme.headerBackgroundColor,
+          child: _PickerHeaderView(
+              _headerVisibleDates,
+              widget.headerStyle,
+              widget.selectionMode,
+              _view,
+              widget.monthViewSettings.numberOfWeeksInView,
+              widget.showNavigationArrow,
+              widget.navigationDirection,
+              widget.monthViewSettings.enableSwipeSelection,
+              widget.minDate,
+              widget.maxDate,
+              widget.monthFormat,
+              _datePickerTheme,
+              _locale,
+              width,
+              widget.headerHeight,
+              widget.allowViewNavigation,
+              _moveToPreviousView,
+              _moveToNextView,
+              widget.enableMultiView,
+              widget.viewSpacing,
+              widget.selectionColor ?? _datePickerTheme.selectionColor,
+              _isRtl,
+              _textScaleFactor),
+          height: widget.headerHeight,
         ),
       ),
       _getViewHeaderView(),
@@ -2030,23 +2025,6 @@ class _SfDateRangePickerState extends State<SfDateRangePicker> {
             _selectedRanges = details._selectedRanges;
             _controller.selectedRanges = _selectedRanges;
           }
-      }
-    }
-  }
-
-  // method to update the calendar tapped call back for the header view
-  void _updateCalendarTapCallbackForHeader() {
-    if (_view == DateRangePickerView.century || !widget.allowViewNavigation) {
-      return;
-    }
-
-    if (_view == DateRangePickerView.month) {
-      _controller.view = DateRangePickerView.year;
-    } else {
-      if (_view == DateRangePickerView.year) {
-        _controller.view = DateRangePickerView.decade;
-      } else if (_view == DateRangePickerView.decade) {
-        _controller.view = DateRangePickerView.century;
       }
     }
   }
