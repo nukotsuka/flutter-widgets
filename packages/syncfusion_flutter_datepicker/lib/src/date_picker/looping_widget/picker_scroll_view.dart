@@ -71,9 +71,10 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     _currentChildIndex = 1;
     _updateVisibleDates();
     _animationController = AnimationController(
-        duration: const Duration(milliseconds: 250),
-        vsync: this,
-        animationBehavior: AnimationBehavior.normal);
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+      animationBehavior: AnimationBehavior.normal,
+    );
     _tween = Tween<double>(begin: 0.0, end: 0.1);
     _animation = _tween.animate(_animationController)
       ..addListener(animationListener);
@@ -903,7 +904,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
       _tween.end = -widget.width;
     }
 
-    _animationController.duration = const Duration(milliseconds: 500);
     _animationController
         .forward()
         .then<dynamic>((dynamic value) => _updateNextView());
@@ -933,7 +933,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
       _tween.end = widget.width;
     }
 
-    _animationController.duration = const Duration(milliseconds: 500);
     _animationController
         .forward()
         .then<dynamic>((dynamic value) => _updatePreviousView());
@@ -1533,7 +1532,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .forward()
                 .then<dynamic>((dynamic value) => _updateNextView());
@@ -1569,7 +1567,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .fling(
                     velocity: 5.0, animationBehavior: AnimationBehavior.normal)
@@ -1590,7 +1587,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .forward()
                 .then<dynamic>((dynamic value) => _updatePreviousView());
@@ -1626,7 +1622,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .fling(
                     velocity: 5.0, animationBehavior: AnimationBehavior.normal)
@@ -1647,7 +1642,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController.forward();
           }
         }
@@ -1719,7 +1713,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .forward()
                 .then<dynamic>((dynamic value) => _updateNextView());
@@ -1753,7 +1746,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .fling(
                     velocity: 5.0, animationBehavior: AnimationBehavior.normal)
@@ -1774,7 +1766,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .forward()
                 .then<dynamic>((dynamic value) => _updatePreviousView());
@@ -1808,7 +1799,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController
                 .fling(
                     velocity: 5.0, animationBehavior: AnimationBehavior.normal)
@@ -1829,7 +1819,6 @@ class _PickerScrollViewState extends State<_PickerScrollView>
               _animationController.reset();
             }
 
-            _animationController.duration = const Duration(milliseconds: 250);
             _animationController.forward();
           }
         }
